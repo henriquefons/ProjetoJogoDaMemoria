@@ -3,7 +3,6 @@ function escondeDiv() {
     $("#divFacil").hide();
     $("#divMedio").hide();
     $("#divDificil").hide();
-  
   }
   
   $(document).ready(function () {
@@ -60,7 +59,7 @@ function embaralhar(array) {
   return array
 }
 
-var i = 2//indice apar a funcao de gerar img
+var i = 2//indice a para funcao de gerar img
 
 function gera_imgs(quantidade) {
 
@@ -101,23 +100,25 @@ function verifica_igual(cont) {
     guarda2clique[cont - 2].setAttribute('src', 'img/imgFundoMelhor.jpg')
     return
   }
+  guarda2clique[cont - 1].onclick=""  //previne um bug caso o usuario clicar no par formado denovo 
+  guarda2clique[cont - 2].onclick=""
   console.log('parabens')
   fim++
 }
 
 function verifica_id_clicado(div) {
-  gera_imgs(pegaValue.val())
+  gera_imgs(pegaValue.val()) // gera e embaralha o array para colocar as imagens
   for (var k = 0; k < temp.length; k++) {
     if (div.id == temp[k].id) { //verifica se este id ja foi clicado para atribuir a msm imagem
 
-      if (div.id == guarda2clique[cont - 1].id && x != 0) {  // verifica se esta sendo clicado novamente
+      if (div.id == guarda2clique[cont - 1].id && x != 0) {  // verifica se a div esta sendo clicada novamente
         console.log('div clicada dnv')
         console.log(idTemp)
 
         return
       }
 
-      document.getElementById(div.id).setAttribute('src', gravaSrc[k])
+      document.getElementById(div.id).setAttribute('src', gravaSrc[k]) 
       console.log("div repetida")
       guarda2clique[cont] = document.getElementById(div.id)
       cont++
@@ -130,15 +131,16 @@ function verifica_id_clicado(div) {
   temp[idTemp] = document.getElementById(div.id)
   gravaSrc[idTemp] = div.src
   guarda2clique[cont] = document.getElementById(div.id)
-  idTemp++
+  idTemp++ // acrescenta para colocar a proxima imagem
   cont++
-  x++
+  x++ // conta os eventos para ultilizar nas função insere_imagens
 }
 
 function verifica_fim(){
   if (fim==pegaValue.val()/2){
     alert("Parabens!!! \n"+ "Você deu " + cont + " click' s")
     console.log("jogo acabou")
+
     window.location.reload()
   }
 }
